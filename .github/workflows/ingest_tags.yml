@@ -21,3 +21,7 @@ jobs:
       run: |
         curl https://api.github.com/repos/ansible/ansible/tags -sS | grep -Po '(?<="name": ")[^"]*' | sort -u > latest_tags
         cat latest_tags
+    - name: Tags to be added
+      run: |
+        comm -13 known_tags latest_tags > new_tags
+        cat new_tags
