@@ -19,7 +19,7 @@ jobs:
         cat known_tags
     - name: latest ansible/ansible tags
       run: |
-        curl https://api.github.com/repos/ansible/ansible/tags -sS | grep -Po '(?<="name": ")[^"]*' | sort -u > latest_tags
+        curl https://api.github.com/repos/ansible/ansible/tags?per_page=2 -sS | grep -Po '(?<="name": ")[^"]*' | sort -u > latest_tags
         cat latest_tags
     - name: Tags to be added
       run: |
@@ -29,3 +29,5 @@ jobs:
       run: |
         cat new_tags | xargs -n1 git tag
         git tag
+    - name:
+      run: git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git --tags
