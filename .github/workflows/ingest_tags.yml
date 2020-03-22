@@ -1,0 +1,17 @@
+name: Ingest tags from ansible/ansible
+
+on:
+    schedule:
+      - cron:  '*/5 * * * *'
+
+jobs:
+  Ingest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Helo
+      run: |
+        echo "Hello"
+        whoami
+        pwd
+        ls -al
