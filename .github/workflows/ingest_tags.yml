@@ -25,3 +25,7 @@ jobs:
       run: |
         comm -13 known_tags latest_tags > new_tags
         cat new_tags
+    - name: Adding tags
+      run: |
+        cat new_tags | xargs -n1 git tag
+        git tag
