@@ -13,10 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-    - name: Helo
+    - name: Known tags
       run: |
-        echo "Hello"
-        whoami
-        pwd
-        ls -al
-        git tag
+        git tag | sort -u > known_tags
+        cat known_tags
+    - name: latest ansible/ansible tags
+      run: |
+        curl https://api.github.com/repos/ansible/ansible/tags -sS | grep -Po '(?<="name": ")[^"]*' | sort -u > latest_tags
+        cat latest_tags
