@@ -4,16 +4,18 @@ on:
     push:
         branches: [ master ]
     schedule:
-      - cron:  '*/5 * * * *'
+      - cron:  '0 * * * *'
 
 jobs:
   Ingest:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Helo
       run: |
         echo "Hello"
         whoami
         pwd
         ls -al
+        git tag
