@@ -1,6 +1,8 @@
 name: Ingest tags from ansible/ansible
 
 on:
+    push:
+        branches: [ master ]
     schedule:
       - cron:  '*/5 * * * *'
 
